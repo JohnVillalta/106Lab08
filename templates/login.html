@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>University of Decce Knutts Sign In</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/login.css') }}">
+</head>
+<body>
+    <section class="wholeBlock">
+        <div class="blockBody">
+            <p id="uniTitle">University of Decce Knutts</p>
+            <div class="formContainer">
+                <form method="POST" class="formThing">
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control c0">
+                            <input class="input" type="text" name="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <p class="control c1">
+                            <input class="input" type="password" name="password" placeholder="********">
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="controlSub c2">
+                            <button type="submit" class="subButton">
+                                Sign In
+                            </button>
+                        </p>
+                    </div>
+                    {% for message in get_flashed_messages() %}
+                        {{ message }}
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

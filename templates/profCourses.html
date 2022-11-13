@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class List</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/profCourses.css') }}">
+</head>
+<body>
+    <section class="wholeBlock">
+        <div class="blockBody">
+            <p id="greetingUser">Welcome {{g.user.username}}!</p>
+            <p id="uniTitle">University of Decce Knutts</p>
+            <form method="POST" class="signoutForm">
+                <p class="containSignout">
+                    <button type="submit" class="signoutButt">
+                        Sign out
+                    </button>
+                </p>
+            </form>
+            <div class="infoContainer">
+                <form method="GET" class="tableForm f0">
+                    <button type="submit" class="yourCourses" name="updateTable">
+                        Your Courses
+                    </button>
+                </form>
+                <table id="yourCourseTable">
+                    <tr>
+                        {% for header in headings %}
+                        <th class="tableHeader">{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for row in data %}
+                    <tr>
+                        {% for cell in row %}
+                        {% if cell == row[0] %}
+                            <td>
+                                <form method="GET" class="exploreClass">
+                                    <button type="submit" class="classButt" name="classButt">
+                                        {{ cell }}
+                                    </button>
+                                </form>
+                            </td>
+                        {% else %}
+                            <td>{{ cell }}</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

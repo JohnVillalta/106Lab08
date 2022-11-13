@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class List</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/studentProfile.css') }}">
+</head>
+<body>
+    <section class="wholeBlock">
+        <div class="blockBody">
+            <p id="greetingUser">Welcome {{g.user.username}}!</p>
+            <p id="uniTitle">University of Decce Knutts</p>
+            <form method="POST" class="signoutForm">
+                <p class="containSignout">
+                    <button type="submit" class="signoutButt">
+                        Sign out
+                    </button>
+                </p>
+            </form>
+            <div class="infoContainer">
+                <form method="GET" class="tableForm f0">
+                    <input type="submit" class="yourCourses" name="updateTable" value="Your Courses">
+                </form>
+                <form method="GET" class="tableForm f1">
+                    <input type="submit" class="addCourses" name="updateTable" value="Add Courses">
+                </form>
+                <table id="yourCourseTable">
+                    <tr>
+                        {% for header in headings %}
+                        <th class="tableHeader">{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for row in data %}
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                    {% for message in get_flashed_messages() %}
+                        {{ message }}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
