@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background-color: #e8f1ff;
+}
+
+.wholeBlock {
+    background-color: #b3d0ff;
+    border: solid 2px #4779ad;
+    margin: 10vh 10vw 10vh 10vw;
+    height: 65vh;
+}
+
+.signoutForm {
+    display: inline-block;
+    float: right;
+}
+
+.signoutButt {
+    background-color: rgba(0, 0, 0, 0);
+    border: None;
+    text-decoration: underline;
+    color: #284461;
+    margin-right: 2vw;
+    margin-top: 2vh;
+    font-size: 100%;
+}
+
+.infoContainer {
+    background-color: #5c89b8;
+    margin: 3vh 2vw 0vh 2vw;
+    height: 475px;
+}
+.tableForm {
+    display: inline-block;
+    width: 100%;
+}
+.yourCourse {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 2px #4779ad;
+    color: #e8f1ff;
+    font-size: 100%;
+}
+
+.backButt {
+    position: absolute;
+    top: 22.2vh;
+    left: 13vw;
+    z-index: 1;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: #e8f1ff;
+    text-decoration: underline;
+}
+
+#greetingUser {
+    display: inline-block;
+    margin-left: 2vw;
+    padding-top: 2vh;
+    color: #284461;
+}
+
+#uniTitle {
+    display: inline;
+    position: fixed;
+    margin-left: 19.9vw;
+    font-size: 200%;
+    color: #284461;
+}
+
+.tableHeader {
+    background-color: #b3d0ff;
+}
+
+#yourCourseTable {
+    background-color: #e8f1ff;
+    width: 90%;
+    margin: auto;
+    margin-top: 5vh;
+}
+
+#yourCourseTable tr {
+    height: 30px;
+    text-align: left;
+}
+
+.classButt {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    text-decoration: underline;
+    font-size: 100%;
+}
