@@ -26,7 +26,6 @@ app.app_context().push
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-<<<<<<< HEAD
 api = Api(app)
 
 login_manager = LoginManager()
@@ -55,9 +54,6 @@ class User:
     def __repr__(self):
         return f'<User: {self.username}>'
 """
-=======
-api = Api(
->>>>>>> c7cbd234b078520c2aad136cde53920bff8dd6a6
 
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -184,7 +180,6 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-<<<<<<< HEAD
     form = LoginForm()
     
     
@@ -197,9 +192,6 @@ def login():
 
     """
     if request.method == 'POST' :
-=======
-    if request.method == 'POST':
->>>>>>> c7cbd234b078520c2aad136cde53920bff8dd6a6
         session.pop('user_id', None)
         username = request.form['username']
         password = request.form['password']
