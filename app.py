@@ -100,3 +100,5 @@ def adminProfile():
         return redirect(url_for('login'))
 
     return render_template('profCourses.html', headings=headings, data=data)
+
+#test
