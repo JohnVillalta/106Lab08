@@ -11,8 +11,14 @@
         <div class="blockBody">
             <p id="uniTitle">University of Decce Knutts</p>
             <div class="formContainer">
-                <form method="POST" class="formThing">
-                    <div class="field">
+                <form method="POST" action="" class="formThing">
+                    {{ form.hidden_tag() }}
+                    {{ form.username }}
+                    {{ form.password }}
+                    {{ form.submit  }}
+                
+                    <!--
+                        <div class="field">
                         <label class="label">Username</label>
                         <div class="control c0">
                             <input class="input" type="text" name="username" placeholder="Username">
@@ -34,6 +40,7 @@
                     {% for message in get_flashed_messages() %}
                         {{ message }}
                     {% endfor %}
+                    -->
                 </form>
             </div>
         </div>
