@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Class List</title>
-    <link rel="stylesheet" href="../styles/studentProfile.css">
-    <script src="../script.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/profViewCourse.css') }}">
 </head>
 <body>
     <section class="wholeBlock">
@@ -17,11 +16,11 @@
                 </p>
             </form>
             <div class="infoContainer">
-                <form class="tableForm f0">
-                    <input type="submit" class="yourCourses" name="updateTable" value="Your Courses">
-                </form>
-                <form method="GET" class="tableForm f1">
-                    <input type="submit" class="addCourses" name="updateTable" value="Add Courses">
+                <form method="POST" class="tableForm f0">
+                    <input type="submit" class="backButt" name="back" value="backout">
+                    <button class="yourCourse" name="updateTable">
+                        {{ className }}
+                    </button>
                 </form>
                 <table id="yourCourseTable">
                     <tr>
@@ -35,9 +34,6 @@
                             <td>{{ cell }}</td>
                         {% endfor %}
                     </tr>
-                    {% endfor %}
-                    {% for message in get_flashed_messages() %}
-                        {{ message }}
                     {% endfor %}
                 </table>
             </div>

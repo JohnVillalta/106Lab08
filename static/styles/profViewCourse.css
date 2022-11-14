@@ -39,13 +39,24 @@ body {
     display: inline-block;
     width: 100%;
 }
-.yourCourses {
+.yourCourse {
     width: 100%;
     height: 50px;
     background-color: rgba(0, 0, 0, 0);
     border: solid 2px #4779ad;
     color: #e8f1ff;
-    font-size: 100%
+    font-size: 100%;
+}
+
+.backButt {
+    position: absolute;
+    top: 22.2vh;
+    left: 13vw;
+    z-index: 1;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: #e8f1ff;
+    text-decoration: underline;
 }
 
 #greetingUser {
