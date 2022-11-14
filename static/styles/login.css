@@ -1,18 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
 * {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: #e8f1ff;
+    background-color: #000000;
 }
 
 .wholeBlock {
-    background-color: #b3d0ff;
-    border: solid 2px #4779ad;
+    background-color: white;
+    padding-top: 10px;
     margin: 10vh 10vw 10vh 10vw;
-    height: 65vh;
+    height: 60vh;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .formThing {
@@ -36,23 +38,36 @@ body {
 .c2 { margin-top: 45px; }
 
 .input {
-    border: solid 1px #4779ad;
+    border: solid 1px black;
     height: 30px;
     width: 350px;
+    border-radius: 7px;
 }
 
+
 .subButton {
-    border: solid 1px #4779ad;
-    background-color: #6da1d6;
+    border: solid 1px black;
+    background-color: black;
     color: white;
-    border-radius: 10px;
+    border-radius: 7px;
     width: 475px;
-    height: 75px;
-    font-size: 125%;
+    height: 40px;
+    font-size: 100%;
+    text-transform: uppercase;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.subButton:hover{
+  background-color: #0504aa;
+  border: solid 1px #0504aa;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 #uniTitle {
     text-align: center;
-    font-size: 200%;
-    color: #284461;
+    font-size: 300%;
+    color: black;
 }

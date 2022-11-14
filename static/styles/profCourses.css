@@ -1,18 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
 * {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: #e8f1ff;
+    background-color: white;
 }
 
 .wholeBlock {
-    background-color: #b3d0ff;
-    border: solid 2px #4779ad;
+    background-color: white;
     margin: 10vh 10vw 10vh 10vw;
     height: 65vh;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .signoutForm {
@@ -21,17 +23,29 @@ body {
 }
 
 .signoutButt {
-    background-color: rgba(0, 0, 0, 0);
-    border: None;
-    text-decoration: underline;
-    color: #284461;
+    background-color: black;
+    color: white;
     margin-right: 2vw;
     margin-top: 2vh;
     font-size: 100%;
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 200px;
+    text-transform: uppercase;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+.signoutButt:hover{
+  background-color: #0504aa;
+  color: white;
+  border: solid 1px #0504aa;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 13px 18px;
+
 }
 
 .infoContainer {
-    background-color: #5c89b8;
+    background-color: white;
     margin: 3vh 2vw 0vh 2vw;
     height: 475px;
 }
@@ -42,16 +56,23 @@ body {
 .yourCourses {
     width: 100%;
     height: 50px;
-    background-color: rgba(0, 0, 0, 0);
-    border: solid 2px #4779ad;
-    color: #e8f1ff;
+    background-color: black;
+    border: solid 2px black;
+    color: white;
+    font-size: 120%;
+    border-radius: 10px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+.yourCourses:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 13px 18px;
 }
 
 #greetingUser {
     display: inline-block;
     margin-left: 2vw;
     padding-top: 2vh;
-    color: #284461;
+    color: black;
 }
 
 #uniTitle {
@@ -59,15 +80,17 @@ body {
     position: fixed;
     margin-left: 19.9vw;
     font-size: 200%;
-    color: #284461;
+    color: black;
 }
 
 .tableHeader {
-    background-color: #b3d0ff;
-}
+    background-color: #F0F0F0;
+    padding-left: 10px;
+
+    }
 
 #yourCourseTable {
-    background-color: #e8f1ff;
+    background-color: white;
     width: 90%;
     margin: auto;
     margin-top: 5vh;
@@ -83,4 +106,8 @@ body {
     border: none;
     text-decoration: underline;
     font-size: 100%;
+    transition-duration: 0.3s;
+}
+.classButt:hover{
+    font-weight: bold;
 }
