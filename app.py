@@ -8,7 +8,6 @@ from flask import (
     g,
     flash
 )
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
@@ -20,7 +19,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'somesecretkey'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-api = Api(
+api = Api(app)
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -124,6 +123,9 @@ data1 = data + data2
 
 nameClass = []
 
+with app.app_context():
+    db.create_all()
+
 @app.before_request
 def before_request():
     g.user = None
@@ -134,6 +136,9 @@ def before_request():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    with app.app_context():
+        init_db()
+        
     if request.method == 'POST':
         session.pop('user_id', None)
         username = request.form['username']
