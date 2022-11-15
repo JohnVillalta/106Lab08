@@ -11,20 +11,53 @@ from flask import (
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api, Resource
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import InputRequired, Length, ValidationError
 import pandas as pd
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'somesecretkey'
+app.config['SECRET_KEY'] = 'somesecretkey'    
+app.app_context().push
+
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 api = Api(app)
 
-class Users(db.Model):
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Users.query.get(int(user_id))
+
+headings = ("Course Name", "Teacher", "Time", "Student Enrolled")
+data = (("Physics 121", "Susan Walker", "TR 11:00-11:50 AM", "5/10"),
+        ("CS 106", "Ammon Hepworth", "MWF 2:00-2:50 PM", "4/10"))
+
+data2 = (("Math 101", "Ralph Jenkins", "MWF 10:00-10:50 AM", "4/8"),
+        ("CS 162", "Ammon Hepworth", "TR 3:00-3:500 PM", "4/4"))
+
+"""
+class User:
+    def __init__(self, id, username, password, teacher):
+        self.id = id
+        self.username = username
+        self.password = password
+        self.teacher = teacher
+
+    def __repr__(self):
+        return f'<User: {self.username}>'
+"""
+
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(25))
-    password = db.Column(db.String(25))
+    username = db.Column(db.String(25), nullable = False, unique=True)
+    password = db.Column(db.String(80), nullable = False)
 
 class Students(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -70,18 +103,27 @@ class StudentsListResource(Resource):
         students = Students.query.all()
         return students_schema.dump(students)
 
-db.create_all()
+class LoginForm(FlaskForm):
+    username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+
+    password = PasswordField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Password"})
+
+    submit = SubmitField("Login")
+
+with app.app_context():
+    db.create_all()
+    db.session.add_all([
+        Users(id=1, username='Anthony', password='pass1'),
+        Users(id=2, username='Jesus', password='thing2'),
+        Users(id=3, username='Ammon', password='highsecurity')
+        ])
+    #db.session.commit()
 api.add_resource(UsersListResource, '/userslist')
 
 """
-db.session.add_all([
-    Users(id=1, username='Anthony', password='pass1'),
-    Users(id=2, username='Jesus', password='thing2'),
-    Users(id=3, username='Ammon', password='highsecurity')
-])"""
-#db.session.commit()
+"""
 
-#table = pd.read_sql(Users.query.statement, con='sqlite:///test.db')
+#table = pd.read_sql(Users.query.statement, con='sqlite:///database.db')
 #print(table)
 
 #users = []
@@ -134,12 +176,24 @@ def before_request():
         user = [x for x in users if x.id == session['user_id']][0]
         g.user = user
 
+@app.route('/')
+def home():
+    return redirect(url_for('login'))
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    with app.app_context():
-        init_db()
-        
-    if request.method == 'POST':
+    form = LoginForm()
+    
+    
+    if form.validate_on_submit():
+        user = Users.query.filter_by(username=form.username.data).first()
+        if user:
+            print("You are a user")
+            login_user(user)
+            return redirect(url_for('studentProfile'))
+
+    """
+    if request.method == 'POST' :
         session.pop('user_id', None)
         username = request.form['username']
         password = request.form['password']
@@ -155,12 +209,14 @@ def login():
                 return redirect(url_for('adminProfile'))
         else:
             flash("There was a problem with the password")
-            return render_template('login.html')
-
-    return render_template('login.html')
+            return render_template('login.html')"""
+    
+    return render_template('login.html', form=form)  
 
 @app.route('/studentProfile', methods=['GET', 'POST'])
+#@login_required
 def studentProfile():
+    """
     if not g.user:
         return redirect(url_for('login'))
 
@@ -171,7 +227,7 @@ def studentProfile():
     '''
     if request.method == 'GET':
         return redirect(url_for('studentProfileAdd'))
-    '''
+    '''"""
 
     return render_template('studentProfile.html', headings=headings, data=data)
 
@@ -214,8 +270,15 @@ def adminProfileView():
         session.pop('user_id', None)
         return redirect(url_for('login'))
 
+    #return render_template('studentProfileAdd.html', headings=headings, data=data2)
+
     if request.method == 'POST' and request.form.get('back') == 'backout':
         nameClass.clear()
         return redirect(url_for('adminProfile'))
 
     return render_template('profViewCourse.html', className=nameClass[0], headings=headings2, data=data0)
+
+if __name__=='__main__':
+    app.run(debug=True)
+
+    

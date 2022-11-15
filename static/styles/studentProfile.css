@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
 * {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: #e8f1ff;
+    background-color: white;
 }
 
 .wholeBlock {
-    background-color: #b3d0ff;
-    border: solid 2px #4779ad;
+    background-color: white;
     margin: 10vh 10vw 10vh 10vw;
     height: 65vh;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .signoutForm {
@@ -21,13 +22,26 @@ body {
 }
 
 .signoutButt {
-    background-color: rgba(0, 0, 0, 0);
-    border: None;
-    text-decoration: underline;
-    color: #284461;
+    background-color: black;
+
+    color: white;
     margin-right: 2vw;
     margin-top: 2vh;
-    font-size: 115%;
+    font-size: 100%;
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 10px;
+    width: 200px;
+    text-transform: uppercase;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+.signoutButt:hover{
+  background-color: #0504aa;
+  color: white;
+  border: solid 1px #0504aa;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .infoContainer {
@@ -45,39 +59,64 @@ body {
 .yourCourses {
     width: 100%;
     height: 50px;
-    background-color: rgba(0, 0, 0, 0);
-    border: solid 2px #4779ad;
-    color: #e8f1ff;
+    background-color: black;
+    border: solid 2px black;
+    color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition-duration: 0.3s;
+    font-size: 150%;
+    border-radius: 10px 0px 0px 10px;
+    cursor: pointer;
+}
+.yourCourses:hover{
+  background-color: #0504aa;
+  color: white;
+  border: solid 2px #0504aa;
+
+
 }
 .addCourses {
     width: 100%;
     height: 50px;
-    background-color: #e8f1ff;
-    border: solid 2px #4779ad;
-    color: #284461;
+    background-color: white;
+    border: solid 2px black;
+    color: black;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition-duration: 0.25s;
+    font-size: 150%;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+}
+.addCourses:hover {
+  background-color: red;
+  color: white;
+  border: solid 2px red;
+
 }
 
 #greetingUser {
     display: inline-block;
     margin-left: 2vw;
     padding-top: 2vh;
-    color: #284461;
+    color: black;
 }
 
 #uniTitle {
     display: inline;
     position: fixed;
     margin-left: 19.9vw;
-    font-size: 200%;
-    color: #284461;
+    font-size: 250%;
+    color: black;
 }
 
 .tableHeader {
-    background-color: #b3d0ff;
+    background-color: #F0F0F0;
+    color: black;
+    padding-left: 10px;
 }
 
 #yourCourseTable {
-    background-color: #e8f1ff;
+    background-color: white;
     width: 90%;
     margin: auto;
     margin-top: 5vh;
